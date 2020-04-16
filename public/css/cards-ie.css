@@ -1,0 +1,5 @@
+
+.playingCards ul.hand li,
+.playingCards ul.deck li {
+    position: static;
+}
