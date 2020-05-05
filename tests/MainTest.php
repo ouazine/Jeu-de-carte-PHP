@@ -12,7 +12,10 @@ class MainTest extends TestCase{
         12,
         $main->getCards()
     );
+    $this->assertInstanceOf(
+      Carte::class,
+      $main->getFirstCard()
+  );
 
-    }
-    
+    } 
 }
