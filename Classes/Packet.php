@@ -32,6 +32,13 @@ private function addCard(Carte $card) : void{
     $this->listCards[] = $card;
     }
 
+    /**
+     * get count cards
+     */
+    public function getCards(){
+        return count($this->listCards);
+    }
+
 /**
  * Remplire la liste des cartes (tirer la main)
  */
