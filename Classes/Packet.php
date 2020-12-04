@@ -1,4 +1,5 @@
 <?php 
+namespace Classes;
 abstract class Packet
 {
 // Packet des cartes (exemple 52 cartes)

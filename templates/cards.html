@@ -1,0 +1,37 @@
+    {% extends "BaseTemplate.html" %}
+{% block title %}Jeux de carte PHP - Youssef EL OUAZINE{% endblock %}
+{% block head %}
+{{ parent() }}
+<style>
+    .important { color: #336699; }
+</style>
+{% endblock %}
+    {% block content %}
+<a href="" class="lien">Tirer une main</a>
+<div class="playingCards fourColours rotateHand">
+    <h3>Tire d'une main de 10 cartes</h3>
+    
+
+    <ul class="hand">
+    {% for card in cartesNonTriees  %}
+        <li>
+            <a class="card rank-{{ arrayValeurs[card[1]]}} {{  arrayCouleurs[card[0]] }}" href="#">
+                <span class="rank">{{ arrayValeurs[card[1]]}}</span>
+                <span class="suit">&{{  arrayCouleurs[card[0]] }};</span>
+            </a>
+        </li>
+        {% endfor %}  
+    </ul>
+    <div class="clear"></div>
+
+    <h2 id="full">Carte triées par couleur et valeur</h2>
+
+    <ul class="table">
+    {% for card in carteTriees  %}
+        <li>
+            <div class="card rank-{{ arrayValeurs[card[1]]}} {{  arrayCouleurs[card[0]] }}"><span class="rank">{{arrayValeurs[card[1]]}}</span><span class="suit">&{{  arrayCouleurs[card[0]] }};</span></div>
+        </li>
+    {% endfor %}   
+    </ul>
+</div>
+{% endblock %}

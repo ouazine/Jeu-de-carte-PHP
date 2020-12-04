@@ -1,6 +1,9 @@
 <?php
-include_once "Packet.php";
-include_once "Carte.php";
+namespace Classes;
+use Classes\Carte;
+use Classes\Packet;
+use Twig\Loader\FilesystemLoader;
+use Twig\Environment;
 class Main extends Packet
 {      
         /**
@@ -29,6 +32,37 @@ public function getColors(): array{
 public function getValues() : array{
         return $this->valeurs;
     }
-
+public  function getCardsFins(){
+        
+        try {
+            // le dossier ou on trouve les templates
+            $loader = new \Twig\Loader\FilesystemLoader('../templates');
+        
+            // initialiser l'environement Twig
+            $twig = new \Twig\Environment($loader);
+        
+            // load template
+            $template = $twig->load('cards.html');
+              $arrayCouleurs = $this->getColors();
+              $arrayValeurs = $this->getValues();
+              $this->shuffleCards();
+              $CartesNonTriees = $this->tireCards(10);
+              $this->sortCards();
+              $CartesTriees = $this->tireCards(10);
+               asort($CartesTriees);
+               $cartetriees = $CartesTriees;
+            // set template variables
+            // render template
+            echo $template->render(array(
+                'arrayCouleurs' => $arrayCouleurs,
+                'arrayValeurs' => $arrayValeurs,
+                'cartesNonTriees' => $CartesNonTriees,
+                'carteTriees'=> $cartetriees
+            ));
+        
+        } catch (Exception $e) {
+            die ('ERROR: ' . $e->getMessage());
+        }
+        }
 
 }
